@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Круассан-кафе — Город Круассан | Сеть кафе</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        kruassan: {
+                            dark: '#2C221E',
+                            gold: '#D4AF37',
+                            cream: '#FAF6F0',
+                            sand: '#F3ECE1',
+                            brown: '#8B5A2B',
+                            accent: '#C59B27',
+                            lightbg: '#FDFBF7'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #FAF6F0; color: #2C221E; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-[#FAF6F0] min-h-screen flex flex-col justify-between selection:bg-[#D4AF37] selection:text-white">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 bg-[#FAF6F0]/95 backdrop-blur-md border-b border-[#EBE3D5] shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo & Brand -->
+                <div class="flex items-center space-x-3">
+                    <a href="#" class="flex items-center space-x-2 group">
+                        <div class="w-12 h-12 bg-[#2C221E] text-[#FAF6F0] rounded-full flex items-center justify-center font-serif text-xl font-bold shadow-md group-hover:bg-[#C59B27] transition">
+                            К
+                        </div>
+                        <div>
+                            <span class="block font-serif text-lg font-bold tracking-tight text-[#2C221E]">КРУАССАН</span>
+                            <span class="block text-xs uppercase tracking-widest text-[#8B5A2B] font-semibold">Family</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation Brands / Links -->
+                <nav class="hidden lg:flex items-center space-x-6 text-sm font-medium text-[#2C221E]">
+                    <a href="#brands" class="hover:text-[#C59B27] transition pb-1 border-b-2 border-transparent hover:border-[#C59B27]">Porto</a>
+                    <a href="#brands" class="hover:text-[#C59B27] transition pb-1 border-b-2 border-transparent hover:border-[#C59B27]">Konigsbacker</a>
+                    <a href="#menu-section" class="text-[#C59B27] font-semibold pb-1 border-b-2 border-[#C59B27] transition">Круассан-кафе</a>
+                    <a href="#loyalty" class="hover:text-[#C59B27] transition pb-1 border-b-2 border-transparent hover:border-[#C59B27]">Программа лояльности</a>
+                    <a href="#contacts" class="hover:text-[#C59B27] transition pb-1 border-b-2 border-transparent hover:border-[#C59B27]">Связаться с нами</a>
+                </nav>
+
+                <!-- Actions: Cart & Mobile Menu Toggle -->
+                <div class="flex items-center space-x-3">
+                    <!-- Cart Button -->
+                    <button onclick="toggleCart()" class="relative bg-[#2C221E] text-[#FAF6F0] px-4 py-2.5 rounded-full flex items-center space-x-2 shadow hover:bg-[#8B5A2B] transition active:scale-95">
+                        <i class="fa-solid fa-basket-shopping text-sm text-[#D4AF37]"></i>
+                        <span class="text-xs font-semibold hidden sm:inline">Корзина</span>
+                        <span id="cart-badge" class="absolute -top-1.5 -right-1.5 bg-[#C59B27] text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold shadow hidden">0</span>
+                    </button>
+
+                    <!-- Mobile Menu Button -->
+                    <button onclick="toggleMobileMenu()" class="lg:hidden p-2.5 rounded-xl bg-[#F3ECE1] text-[#2C221E] hover:bg-[#EBE3D5] transition">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-[#FAF6F0] border-b border-[#EBE3D5] px-4 pt-2 pb-6 space-y-3 shadow-lg">
+            <a href="#brands" onclick="toggleMobileMenu()" class="block py-2 text-[#2C221E] font-medium border-b border-[#F3ECE1]">Porto</a>
+            <a href="#brands" onclick="toggleMobileMenu()" class="block py-2 text-[#2C221E] font-medium border-b border-[#F3ECE1]">Konigsbacker</a>
+            <a href="#menu-section" onclick="toggleMobileMenu()" class="block py-2 text-[#C59B27] font-semibold border-b border-[#F3ECE1]">Круассан-кафе</a>
+            <a href="#loyalty" onclick="toggleMobileMenu()" class="block py-2 text-[#2C221E] font-medium border-b border-[#F3ECE1]">Программа лояльности</a>
+            <a href="#contacts" onclick="toggleMobileMenu()" class="block py-2 text-[#2C221E] font-medium">Связаться с нами</a>
+        </div>
+    </header>
+
+    <!-- Main Content Wrapper -->
+    <main class="flex-grow">
+
+        <!-- Hero / Banner Section -->
+        <section class="relative bg-gradient-to-r from-[#2C221E] to-[#43342D] text-[#FAF6F0] py-16 lg:py-24 overflow-hidden">
+            <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#D4AF37_1px,transparent_1px)] [background-size:16px_16px]"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="max-w-3xl">
+                    <div class="inline-flex items-center space-x-2 bg-[#C59B27]/20 border border-[#C59B27]/40 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider text-[#D4AF37] mb-6">
+                        <i class="fa-solid fa-star"></i>
+                        <span>Город Круассан • Семейные кафе</span>
+                    </div>
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
+                        КРУАССАН-КАФЕ
+                    </h1>
+                    <p class="text-lg sm:text-xl text-[#F3ECE1] font-light leading-relaxed mb-8">
+                        Это вкусные и разнообразные завтраки весь день, эксклюзивные десерты от одного из лучших шеф-кондитеров, настоящий французский хлеб и круассаны, ароматный кофе.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#menu-section" class="bg-[#C59B27] text-white px-8 py-3.5 rounded-full font-semibold shadow-lg hover:bg-[#b08720] transition transform hover:-translate-y-0.5">
+                            Смотреть меню
+                        </a>
+                        <a href="#loyalty" class="border border-[#FAF6F0]/30 hover:border-[#D4AF37] px-8 py-3.5 rounded-full font-semibold text-[#FAF6F0] hover:text-[#D4AF37] transition">
+                            Программа лояльности
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Section -->
+        <section id="menu-section" class="py-12 lg:py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Section Header -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-8">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-[#8B5A2B]">Наше меню</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#2C221E] mt-1">Выберите категорию блюд</h2>
+                    </div>
+                    <!-- Search Input -->
+                    <div class="mt-4 md:mt-0 relative w-full md:w-72">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-gray-400">
+                            <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                        </span>
+                        <input type="text" id="search-input" oninput="filterDishes()" placeholder="Поиск по меню..." class="w-full pl-10 pr-4 py-2.5 bg-white border border-[#EBE3D5] rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#C59B27] transition shadow-sm">
+                    </div>
+                </div>
+
+                <!-- Horizontal Category Tabs -->
+                <div class="relative mb-10">
+                    <div id="category-container" class="flex space-x-3 overflow-x-auto no-scrollbar pb-2 pt-1">
+                        <!-- Populated dynamically via JS -->
+                    </div>
+                </div>
+
+                <!-- Dish Grid Container -->
+                <div id="dish-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Populated dynamically via JS -->
+                </div>
+
+                <!-- Empty Search Result State -->
+                <div id="no-results" class="hidden text-center py-16">
+                    <div class="w-16 h-16 bg-[#F3ECE1] text-[#8B5A2B] rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-[#2C221E]">Ничего не найдено</h3>
+                    <p class="text-sm text-gray-500 mt-1">Попробуйте изменить поисковый запрос или выберите другую категорию.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loyalty Program Section -->
+        <section id="loyalty" class="bg-[#F3ECE1] py-16 border-y border-[#EBE3D5]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-[#8B5A2B]">Бонусная система</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#2C221E] mt-2 mb-4">Программа лояльности Kruassan Family</h2>
+                        <p class="text-[#2C221E]/80 mb-6 leading-relaxed">
+                            Получайте кешбэк бонусами с каждого заказа, оплачивайте ими любимые десерты и завтраки. Участвуйте в закрытых дегустациях и получайте подарки в день рождения!
+                        </p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center space-x-3 text-sm font-medium text-[#2C221E]">
+                                <span class="w-6 h-6 rounded-full bg-[#C59B27] text-white flex items-center justify-center text-xs"><i class="fa-solid fa-check"></i></span>
+                                <span>До 10% кешбэк бонусами с каждого чека</span>
+                            </li>
+                            <li class="flex items-center space-x-3 text-sm font-medium text-[#2C221E]">
+                                <span class="w-6 h-6 rounded-full bg-[#C59B27] text-white flex items-center justify-center text-xs"><i class="fa-solid fa-check"></i></span>
+                                <span>Приветственные бонусы при регистрации</span>
+                            </li>
+                            <li class="flex items-center space-x-3 text-sm font-medium text-[#2C221E]">
+                                <span class="w-6 h-6 rounded-full bg-[#C59B27] text-white flex items-center justify-center text-xs"><i class="fa-solid fa-check"></i></span>
+                                <span>Специальные предложения и скидки на новинки</span>
+                            </li>
+                        </ul>
+                        <button onclick="showToast('Функционал регистрации карты лояльности в разработке')" class="bg-[#2C221E] text-white px-8 py-3.5 rounded-full font-semibold shadow hover:bg-[#8B5A2B] transition">
+                            Оформить карту
+                        </button>
+                    </div>
+                    <div class="bg-gradient-to-br from-[#2C221E] to-[#43342D] rounded-3xl p-8 sm:p-10 text-white shadow-xl relative overflow-hidden">
+                        <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-[#C59B27]/20 rounded-full blur-2xl"></div>
+                        <div class="flex justify-between items-start mb-12">
+                            <div>
+                                <span class="font-serif text-xl font-bold tracking-wide">Kruassan Club</span>
+                                <span class="block text-xs text-[#D4AF37] uppercase tracking-widest mt-1">Gold Card</span>
+                            </div>
+                            <div class="w-10 h-10 rounded-full bg-[#C59B27] flex items-center justify-center font-bold text-[#2C221E]">
+                                КФ
+                            </div>
+                        </div>
+                        <div class="mb-8">
+                            <div class="text-xs text-gray-400 uppercase tracking-widest">Баланс бонусов</div>
+                            <div class="text-3xl font-serif font-bold text-[#D4AF37] mt-1">350 бонусов</div>
+                        </div>
+                        <div class="flex justify-between items-end text-xs text-gray-300">
+                            <div>
+                                <span class="block text-gray-400">Держатель карты</span>
+                                <span class="font-medium text-white text-sm">Иван Иванов</span>
+                            </div>
+                            <div class="tracking-widest font-mono text-sm">•••• 4892</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brands Section -->
+        <section id="brands" class="py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-xs font-bold uppercase tracking-widest text-[#8B5A2B]">Наша семья брендов</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#2C221E] mt-2">Другие проекты Kruassan Family</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Brand 1 -->
+                    <div class="bg-white rounded-2xl p-6 border border-[#EBE3D5] shadow-sm hover:shadow-md transition text-center group">
+                        <div class="w-16 h-16 bg-[#F3ECE1] text-[#8B5A2B] rounded-full flex items-center justify-center mx-auto mb-4 text-2xl group-hover:bg-[#C59B27] group-hover:text-white transition">
+                            <i class="fa-solid fa-mug-hot"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-[#2C221E] mb-2">Konigsbacker</h3>
+                        <p class="text-sm text-gray-600 mb-6">Сеть уютных пекарен-кондитерских со свежим хлебом и ароматной выпечкой каждый день.</p>
+                        <a href="https://kruassanfamily.ru" target="_blank" class="text-xs font-bold uppercase tracking-wider text-[#C59B27] hover:underline">Подробнее <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                    </div>
+                    <!-- Brand 2 -->
+                    <div class="bg-white rounded-2xl p-6 border border-[#EBE3D5] shadow-sm hover:shadow-md transition text-center group">
+                        <div class="w-16 h-16 bg-[#F3ECE1] text-[#8B5A2B] rounded-full flex items-center justify-center mx-auto mb-4 text-2xl group-hover:bg-[#C59B27] group-hover:text-white transition">
+                            <i class="fa-solid fa-utensils"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-[#2C221E] mb-2">Круассан-кафе</h3>
+                        <p class="text-sm text-gray-600 mb-6">Завтраки целый день, высокая кухня, эксклюзивные десерты и атмосфера парижского кафе.</p>
+                        <a href="#menu-section" class="text-xs font-bold uppercase tracking-wider text-[#C59B27] hover:underline">Выбрать меню <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                    </div>
+                    <!-- Brand 3 -->
+                    <div class="bg-white rounded-2xl p-6 border border-[#EBE3D5] shadow-sm hover:shadow-md transition text-center group">
+                        <div class="w-16 h-16 bg-[#F3ECE1] text-[#8B5A2B] rounded-full flex items-center justify-center mx-auto mb-4 text-2xl group-hover:bg-[#C59B27] group-hover:text-white transition">
+                            <i class="fa-solid fa-fish"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-[#2C221E] mb-2">Porto</h3>
+                        <p class="text-sm text-gray-600 mb-6">Ресторан морепродуктов и средиземноморской кухни с изысканной винной картой.</p>
+                        <a href="https://kruassanfamily.ru" target="_blank" class="text-xs font-bold uppercase tracking-wider text-[#C59B27] hover:underline">Подробнее <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacts Section -->
+        <section id="contacts" class="bg-[#2C221E] text-white py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-[#D4AF37]">Связаться с нами</span>
+                        <h2 class="font-serif text-3xl font-bold mt-2 mb-6">Мы всегда рады вашим отзывам и вопросам</h2>
+                        <p class="text-gray-300 text-sm mb-6 leading-relaxed">
+                            Хотите забронировать столик, уточнить детали заказа или оставить отзыв? Напишите нам, и наша служба заботы ответит в ближайшее время.
+                        </p>
+                        <div class="space-y-4 text-sm">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-full bg-[#C59B27]/20 text-[#D4AF37] flex items-center justify-center"><i class="fa-solid fa-phone"></i></div>
+                                <span>+7 (4012) 555-888</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-full bg-[#C59B27]/20 text-[#D4AF37] flex items-center justify-center"><i class="fa-solid fa-envelope"></i></div>
+                                <span>support@kruassanfamily.ru</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-full bg-[#C59B27]/20 text-[#D4AF37] flex items-center justify-center"><i class="fa-solid fa-location-dot"></i></div>
+                                <span>г. Калининград, ул. Профессора Баранова, 1</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <form onsubmit="handleContactSubmit(event)" class="bg-[#362B26] p-8 rounded-3xl shadow-xl space-y-4">
+                            <h3 class="font-serif text-xl font-bold mb-2">Напишите нам</h3>
+                            <div>
+                                <label class="block text-xs uppercase tracking-wider text-gray-300 mb-1">Ваше имя</label>
+                                <input type="text" required class="w-full bg-[#2C221E] border border-gray-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#C59B27]">
+                            </div>
+                            <div>
+                                <label class="block text-xs uppercase tracking-wider text-gray-300 mb-1">Телефон или Email</label>
+                                <input type="text" required class="w-full bg-[#2C221E] border border-gray-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#C59B27]">
+                            </div>
+                            <div>
+                                <label class="block text-xs uppercase tracking-wider text-gray-300 mb-1">Сообщение</label>
+                                <textarea rows="3" required class="w-full bg-[#2C221E] border border-gray-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#C59B27]"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-[#C59B27] text-white py-3.5 rounded-xl font-semibold shadow hover:bg-[#b08720] transition">
+                                Отправить сообщение
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#231A17] text-gray-400 py-8 border-t border-gray-800 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+            <div>
+                &copy; 2026 «Круассан Family». Все права защищены. Точная копия сайта kruassanfamily.ru/gorodkruassan.
+            </div>
+            <div class="flex space-x-6">
+                <a href="#" class="hover:text-white transition">Политика конфиденциальности</a>
+                <a href="#" class="hover:text-white transition">Условия использования</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Slide-over Drawer -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity" onclick="toggleCart()"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-[#FAF6F0] shadow-2xl flex flex-col justify-between">
+                <!-- Header -->
+                <div class="p-6 border-b border-[#EBE3D5] flex items-center justify-between bg-white">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-basket-shopping text-[#C59B27] text-lg"></i>
+                        <h2 class="font-serif text-xl font-bold text-[#2C221E]">Ваш заказ</h2>
+                    </div>
+                    <button onclick="toggleCart()" class="w-9 h-9 rounded-full bg-[#F3ECE1] text-[#2C221E] flex items-center justify-center hover:bg-[#EBE3D5] transition">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <!-- Items list -->
+                <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4 divide-y divide-[#EBE3D5]">
+                    <!-- Populated dynamically -->
+                </div>
+                <!-- Footer / Checkout -->
+                <div class="p-6 bg-white border-t border-[#EBE3D5]">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-sm font-medium text-gray-600">Итого к оплате:</span>
+                        <span id="cart-total" class="font-serif text-2xl font-bold text-[#2C221E]">0 ₽</span>
+                    </div>
+                    <button onclick="checkout()" class="w-full bg-[#C59B27] text-white py-4 rounded-2xl font-semibold shadow hover:bg-[#b08720] transition flex items-center justify-center space-x-2">
+                        <span>Оформить заказ</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dish Details Modal -->
+    <div id="dish-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
+        <div class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeDishModal()"></div>
+        <div class="relative bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl z-10 animate-in fade-in zoom-in duration-200">
+            <button onclick="closeDishModal()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60 transition">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="relative h-64 sm:h-72">
+                <img id="modal-img" src="" alt="Dish" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/F3ECE1/8B5A2B?text=Круассан-кафе'">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                <div class="absolute bottom-4 left-6 right-6 text-white">
+                    <span id="modal-category" class="text-xs uppercase tracking-widest text-[#D4AF37] font-bold"></span>
+                    <h3 id="modal-title" class="font-serif text-2xl sm:text-3xl font-bold mt-1"></h3>
+                </div>
+            </div>
+            <div class="p-6 sm:p-8 space-y-6">
+                <p id="modal-desc" class="text-gray-600 text-sm leading-relaxed"></p>
+                
+                <!-- Nutrition & Specs Grid (B / ZH / U / kkal) -->
+                <div class="grid grid-cols-4 gap-2 bg-[#FAF6F0] p-4 rounded-2xl text-center">
+                    <div>
+                        <span class="block text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Белки</span>
+                        <span id="modal-protein" class="text-sm font-bold text-[#2C221E]"></span>
+                    </div>
+                    <div>
+                        <span class="block text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Жиры</span>
+                        <span id="modal-fat" class="text-sm font-bold text-[#2C221E]"></span>
+                    </div>
+                    <div>
+                        <span class="block text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Углеводы</span>
+                        <span id="modal-carbs" class="text-sm font-bold text-[#2C221E]"></span>
+                    </div>
+                    <div>
+                        <span class="block text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Ккал</span>
+                        <span id="modal-kcal" class="text-sm font-bold text-[#C59B27]"></span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 text-xs bg-white border border-[#EBE3D5] p-3 rounded-xl">
+                    <div><span class="font-bold text-[#8B5A2B]">Вес:</span> <span id="modal-weight" class="text-gray-700"></span></div>
+                    <div><span class="font-bold text-[#8B5A2B]">Аллергены:</span> <span id="modal-allergens" class="text-gray-700">Глютен, яйца, молоко</span></div>
+                </div>
+
+                <div>
+                    <h4 class="text-xs uppercase tracking-wider font-bold text-[#8B5A2B] mb-1">Состав:</h4>
+                    <p id="modal-ingredients" class="text-xs text-gray-600 leading-normal"></p>
+                </div>
+
+                <div class="flex items-center justify-between pt-4 border-t border-[#EBE3D5]">
+                    <div>
+                        <span class="text-xs text-gray-500 block">Цена</span>
+                        <span id="modal-price" class="font-serif text-2xl font-bold text-[#2C221E]"></span>
+                    </div>
+                    <button id="modal-add-btn" class="bg-[#C59B27] text-white px-8 py-3.5 rounded-2xl font-semibold shadow hover:bg-[#b08720] transition flex items-center space-x-2">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>В корзину</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Notification Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-[#2C221E] text-white px-6 py-3.5 rounded-2xl shadow-xl flex items-center space-x-3 text-sm">
+        <i class="fa-solid fa-circle-check text-[#D4AF37] text-lg"></i>
+        <span id="toast-message">Товар добавлен в корзину</span>
+    </div>
+
+    <!-- JavaScript Data & Application Logic -->
+    <script>
+        // Full expanded categories list matching all required sections
+        const categories = [
+            { id: 'all', name: 'Все меню' },
+            { id: 'breakfast', name: 'Завтраки' },
+            { id: 'sandwiches', name: 'Сэндвичи' },
+            { id: 'salads', name: 'Салаты' },
+            { id: 'appetizers', name: 'Закуски' },
+            { id: 'hot', name: 'Горячие блюда' },
+            { id: 'pastas', name: 'Пасты' },
+            { id: 'soups', name: 'Супы' },
+            { id: 'desserts', name: 'Десертная карта' },
+            { id: 'drinks', name: 'Напитки' },
+            { id: 'wine', name: 'Винная карта' },
+            { id: 'bread', name: 'Хлеб' },
+            { id: 'cakes', name: 'Торты' },
+            { id: 'coffee', name: 'Кофе' },
+            { id: 'author-desserts', name: 'Авторские десерты' },
+            { id: 'kids', name: 'Детское меню' },
+            { id: 'beans', name: 'Кофе в пачках' },
+            { id: 'autumn', name: 'Осеннее меню' }
+        ];
+
+        // Comprehensive catalog covering all required categories with nutrition B/ZH/U/kkal
+        const dishes = [
+            {
+                id: 1,
+                categoryId: 'breakfast',
+                categoryName: 'Завтраки',
+                name: 'Большой завтрак от шефа',
+                description: 'Сытный фирменный завтрак с глазуньей из двух яиц, хрустящим беконом, колбасками, томатами гриль, фасолью в томатном соусе и пшеничным тостом.',
+                price: 1450,
+                weight: '580 г',
+                protein: '6.8 г',
+                fat: '11.6 г',
+                carbs: '10.3 г',
+                kcal: '173 ккал',
+                allergens: 'Глютен, яйца, соя',
+                ingredients: 'Яйца куриные, бекон свиной, колбаски охотничьи, томаты черри, фасоль консервированная, тост пшеничный, масло сливочное, зелень.',
+                image: 'https://placehold.co/600x400/F3ECE1/8B5A2B?text=Большой+завтрак'
+            },
+            {
+                id: 2,
+                categoryId: 'breakfast',
+                categoryName: 'Завтраки',
+                name: 'Скрембл в круассане с лососем',
+                description: 'Сытный круассан с воздушным скремблом, слабосоленой форелью, тремя видами сыра и свежими овощами.',
+                price: 665,
+                weight: '300 г',
+                protein: '8.8 г',
+                fat: '17.3 г',
+                carbs: '10.3 г',
+                kcal: '232 ккал',
+                allergens: 'Рыба, яйца, глютен, молоко',
+                ingredients: 'Круассан фроше, скрембл, форель слабосоленая, сыр Тильзитер, сыр Чеддер, сыр творожный, листья салата, огурец, заправка Нисуаз.',
+                image: 'https://placehold.co/600x400/F3ECE1/8B5A2B?text=Скрембл+с+лососем'
+            },
+            {
+                id: 3,
+                categoryId: 'breakfast',
+                categoryName: 'Завтраки',
+                name: 'Норвежский завтрак',
+                description: 'Легкий и питательный завтрак на норвежском хлебе с форелью и авокадо.',
+                price: 660,
+                weight: '260 г',
+                protein: '8.4 г',
+                fat: '19.3 г',
+                carbs: '7.5 г',
+                kcal: '238 ккал',
+                allergens: 'Рыба, яйца, глютен, молоко',
+                ingredients: 'Норвежский хлеб, крем сливочный, форель слабосоленая, салат свежий, авокадо, заправка Нисуаз.',
+                image: 'https://placehold.co/600x400/F3ECE1/8B5A2B?text=Норвежский+завтрак'
+            },
+            {
+                id: 4,
+                categoryId: 'breakfast',
+                categoryName: 'Завтраки',
+                name: 'Шакшука',
+                description: 'Популярное блюдо из яиц, тушёных в пряном томатном соусе, с чиабаттой.',
+                price: 400,
+                weight: '320 г',
+                protein: '5.5 г',
+                fat: '3.5 г',
+                carbs: '9.0 г',
+                kcal: '89 ккал',
+                allergens: 'Молоко, яйца, глютен',
+                ingredients: 'Яйцо куриное, томаты в с/с, перец свежий, лук, томатная паста, чиабатта, специи.',
+                image: 'https://placehold.co/600x400/F3ECE1/8B5A2B?text=Шакшука'
+            },
+            {
+                id: 5,
+                categoryId: 'sandwiches',
+                categoryName: 'Сэндвичи',
+                name: 'Клаб-сэндвич с курицей и беконом',
+                description: 'Многослойный сэндвич на золотистых тостах с сочным куриным филе, хрустящим беконом и соусом.',
+                price: 440,
+                weight: '310 г',
+                protein: '24 г',
+                fat: '22 г',
+                carbs: '38 г',
+                kcal: '460 ккал',
+                allergens: 'Глютен, яйца, горчица',
+                ingredients: 'Тостовый хлеб, филе куриное гриль, бекон, салат айсберг, томаты, соус цезарь.',
+                image: 'https://placehold.co/600x400/F3ECE1/8B5A2B?text=Клаб-сэндвич'
+            },
+            {
+                id: 6,
+                categoryId: 'salads',
+                categoryName: 'Салаты',
+                name: 'Салат Цезарь с цыпленком',
+                description: 'Классический салат с хрустящими листьями романо, нежным куриным филе гриль и пармезаном.',
+                price: 490,
+                weight: '270 г',
+                protein: '23 г',
+                fat: '17 г',
+                carbs: '14 г',
+                kcal: '340 ккал',
+                allergens: 'Рыба, молоко, яйца, глютен',
+                ingredients: 'Салат романо, куриное филе, сыр пармезан, гренки чесночные, томаты черри, соус цезарь.',
+                image: 'https://placehold.co/600x400/F3ECE1/8B5A2B?text=Цезарь+с+цыпленком'
+            },
+            {
+                id: 7,
+                categoryId: 'appetizers',
+                categoryName: 'Закуски',
+                name: 'Брускетта с ростбифом',
+                description: 'Хрустящий злаковый хлеб с сочным ростбифом, соусом тартар и корнишонами.',
+                price: 390,
+                weight: '210 г',
+                protein: '12 г',
+                fat: '15 г',
+                carbs: '28 г',
+                kcal: '290 ккал',
+                allergens: 'Глютен, яйца, горчица',
+                ingredients: 'Хлеб злаковый, ростбиф, соус тартар, корнишоны, томаты вяленые.',
+                image: 'https://placehold.co/600x400/F3ECE1/8B5A2B?text=Брускетта+с+ростбифом'
+            },
+            {
+                id: 8,
+                categoryId: 'hot',
+                categoryName: 'Горячие блюда',
+                name: 'Стейк из лосося с овощами гриль',
+                description: 'Нежный филейный стейк норвежского лосося, приготовленный на гриле, с цукини и перцем.',
+                price: 890,
+                weight: '320 г',
+                protein: '28 г',
+                fat: '24 г',
+                carbs: '8 г',
+                kcal: '360 ккал',
+                allergens: 'Рыба, орехи',
+                ingredients: 'Лосось, цукини, болгарский перец, томаты черри, соус песто, лимон.',
+                image: 'https://placehold.co/600x400/F3ECE1/8B5A2B?text=Стейк+из+лосося'
+            },
+            {
+                id: 9,
+                categoryId: 'pastas',
+                categoryName: 'Пасты',
+                name: 'Паста Карбонара',
+                description: 'Традиционная итальянская паста тальятелле с беконом, желтком, сливками и пармезаном.',
+                price: 520,
+                weight: '350 г',
+                protein: '16 г',
+                fat: '24 г',
+                carbs: '54 г',
+                kcal: '520 ккал',
+                allergens: 'Глютен, молоко, яйца',
+                ingredients: 'Паста тальятелле, бекон, сливки, желток яичный, сыр пармезан.',
+                image: 'https://placehold.co/600x400/F3ECE1/8B5A2B?text=Паста+Карбонара'
+            },
+            {
+                id: 10,
+                categoryId: 'soups',
+                categoryName: 'Супы',
+                name: 'Крем-суп из шампиньонов',
+                description: 'Бархатистый грибной крем-суп с ароматом трюфельного масла и сливками.',
+                price: 360,
+                weight: '300 г',
+                protein: '5 г',
+                fat: '14 г',
+                carbs: '21 г',
+                kcal: '240 ккал',
+                allergens: 'Молоко, глютен',
+                ingredients: 'Шампиньоны, лук шалот, сливки 22%, масло трюфельное, гренки.',
+                image: 'https://placehold.co/600x400/F3ECE1/8B5A2B?text=Крем-суп+грибной'
+            },
+            {
+                id: 11,
+                categoryId: 'desserts',
+                categoryName: 'Десертная карта',
+                name: 'Десерт Наполеон с заварным кремом',
+                description: 'Фирменный слоеный десерт по секретному рецепту с нежнейшим кремом.',
+                price: 340,
+                weight: '180 г',
+                protein: '5 г',
+                fat: '22 г',
+                carbs: '46 г',
+                kcal: '420 ккал',
+                allergens: 'Глютен, молоко, яйца',
+                ingredients: 'Тесто слоеное, молоко, масло сливочное, желтки, ваниль.',
+                image: 'https://placehold.co/600x400/F3ECE1/8B5A2B?text=Десерт+Наполеон'
+            },
+            {
+                id: 12,
+                categoryId: 'drinks',
+                categoryName: 'Напитки',
+                name: 'Домашний облепиховый лимонад',
+                description: 'Освежающий напиток из натурального пюре облепихи, меда и апельсина.',
+                price: 290,
+                weight: '400 мл',
+                protein: '1 г',
+                fat: '0 г',
+                carbs: '22 г',
+                kcal: '95 ккал',
+                allergens: 'Мед',
+                ingredients: 'Пюре облепихи, мед, апельсин, мята, вода газированная.',
+                image: 'https://placehold.co/600x400/F3ECE1/8B5A2B?text=Облепиховый+лимонад'
+            },
+            {
+                id: 13,
+                categoryId: 'wine',
+                categoryName: 'Винная карта',
+                name: 'Просекко Док Экстра Драй (бокал)',
+                description: 'Игристое итальянское сухое вино с утонченным ароматом цветов и цитрусов.',
+                price: 490,
+                weight: '150 мл',
+                protein: '0 г',
+                fat: '0 г',
+                carbs: '3 г',
+                kcal: '110 ккал',
+                allergens: 'Диоксид серы',
+                ingredients: 'Виноград сорта Глера (100%).',
+                image: 'https://placehold.co/600x400/F3ECE1/8B5A2B?text=Просекко'
+            },
+            {
+                id: 14,
+                categoryId: 'bread',
+                categoryName: 'Хлеб',
+                name: 'Французский багет на закваске',
+                description: 'Традиционный хрустящий багет с пористым мякишем и золотистой корочкой.',
+                price: 150,
+                weight: '250 г',
+                protein: '8 г',
+                fat: '1 г',
+                carbs: '52 г',
+                kcal: '250 ккал',
+                allergens: 'Глютен',
+                ingredients: 'Мука пшеничная, вода, закваска, соль морская.',
+                image: 'https://placehold.co/600x400/F3ECE1/8B5A2B?text=Французский+багет'
+            },
+            {
+                id: 15,
+                categoryId: 'cakes',
+                categoryName: 'Торты',
+                name: 'Торт Медовик классический (порция)',
+                description: 'Тончайшие медовые коржи, пропитанные сметанным кремом и орехами.',
+                price: 380,
+                weight: '160 г',
+                protein: '6 г',
+                fat: '18 г',
+                carbs: '42 г',
+                kcal: '360 ккал',
+                allergens: 'Глютен, молоко, яйца, орехи',
+                ingredients: 'Мед, мука, сметана 30%, сахар, грецкий орех.',
+                image: 'https://placehold.co/600x400/F3ECE1/8B5A2B?text=Медовик'
+            },
+            {
+                id: 16,
+                categoryId: 'coffee',
+                categoryName: 'Кофе',
+                name: 'Капучино на зерновом кофе',
+                description: 'Классический кофейный напиток с двойным эспрессо и молочной пенкой.',
+                price: 240,
+                weight: '300 мл',
+                protein: '4 г',
+                fat: '6 г',
+                carbs: '9 г',
+                kcal: '120 ккал',
+                allergens: 'Молоко',
+                ingredients: 'Эспрессо, молоко цельное.',
+                image: 'https://placehold.co/600x400/F3ECE1/8B5A2B?text=Капучино'
+            },
+            {
+                id: 17,
+                categoryId: 'author-desserts',
+                categoryName: 'Авторские десерты',
+                name: 'Мусс Манго-Маракуйя',
+                description: 'Легкий мусс из белого шоколада с тропической начинкой из манго и маракуйи.',
+                price: 420,
+                weight: '140 г',
+                protein: '4 г',
+                fat: '16 г',
+                carbs: '32 г',
+                kcal: '290 ккал',
+                allergens: 'Молоко, соя',
+                ingredients: 'Шоколад белый, сливки, пюре манго, маракуйя.',
+                image: 'https://placehold.co/600x400/F3ECE1/8B5A2B?text=Манго-Маракуйя'
+            },
+            {
+                id: 18,
+                categoryId: 'kids',
+                categoryName: 'Детское меню',
+                name: 'Куриные мини-котлетки с пюре',
+                description: 'Паровые котлетки из куриного филе с воздушным картофельным пюре.',
+                price: 320,
+                weight: '220 г',
+                protein: '18 г',
+                fat: '10 г',
+                carbs: '24 г',
+                kcal: '260 ккал',
+                allergens: 'Молоко',
+                ingredients: 'Филе цыпленка, картофель, молоко, масло сливочное.',
+                image: 'https://placehold.co/600x400/F3ECE1/8B5A2B?text=Детские+котлетки'
+            },
+            {
+                id: 19,
+                categoryId: 'beans',
+                categoryName: 'Кофе в пачках',
+                name: 'Кофе в зернах Бразилия Серрадо 250г',
+                description: 'Сбалансированный кофе с нотами шоколада и орехов.',
+                price: 690,
+                weight: '250 г',
+                protein: '0 г',
+                fat: '0 г',
+                carbs: '0 г',
+                kcal: '0 ккал',
+                allergens: 'Нет',
+                ingredients: '100% арабика (Бразилия).',
+                image: 'https://placehold.co/600x400/F3ECE1/8B5A2B?text=Кофе+в+зернах'
+            },
+            {
+                id: 20,
+                categoryId: 'autumn',
+                categoryName: 'Осеннее меню',
+                name: 'Тыквенный крем-суп с имбирем',
+                description: 'Согревающий сезонный крем-суп из тыквы с имбирем и кокосовыми сливками.',
+                price: 380,
+                weight: '300 г',
+                protein: '4 г',
+                fat: '12 г',
+                carbs: '22 г',
+                kcal: '210 ккал',
+                allergens: 'Могут содержать следы орехов',
+                ingredients: 'Тыква, сливки кокосовые, имбирь, лук, семена тыквы.',
+                image: 'https://placehold.co/600x400/F3ECE1/8B5A2B?text=Тыквенный+суп'
+            }
+        ];
+
+        let currentCategory = 'all';
+        let cart = [];
+
+        // Render Category Tabs
+        function renderCategories() {
+            const container = document.getElementById('category-container');
+            if (!container) return;
+            container.innerHTML = categories.map(cat => `
+                <button onclick="selectCategory('${cat.id}')" class="px-5 py-2.5 rounded-full text-sm font-medium whitespace-nowrap transition shadow-sm ${currentCategory === cat.id ? 'bg-[#2C221E] text-white shadow-md' : 'bg-white text-[#2C221E] border border-[#EBE3D5] hover:border-[#C59B27]'}">
+                    ${cat.name}
+                </button>
+            `).join('');
+        }
+
+        // Select Category handler
+        function selectCategory(categoryId) {
+            currentCategory = categoryId;
+            renderCategories();
+            filterDishes();
+        }
+
+        // Filter and Render Dishes
+        function filterDishes() {
+            const searchInput = document.getElementById('search-input');
+            const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+            const grid = document.getElementById('dish-grid');
+            const noResults = document.getElementById('no-results');
+            if (!grid || !noResults) return;
+
+            const filtered = dishes.filter(dish => {
+                const matchesCategory = currentCategory === 'all' || dish.categoryId === currentCategory;
+                const matchesQuery = dish.name.toLowerCase().includes(query) || dish.description.toLowerCase().includes(query);
+                return matchesCategory && matchesQuery;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                noResults.classList.remove('hidden');
+                return;
+            }
+
+            noResults.classList.add('hidden');
+            grid.innerHTML = filtered.map(dish => `
+                <div class="bg-white rounded-2xl border border-[#EBE3D5] overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between group">
+                    <div class="cursor-pointer overflow-hidden relative" onclick="openDishModal(${dish.id})">
+                        <img src="${dish.image}" alt="${dish.name}" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300" onerror="this.src='https://placehold.co/600x400/F3ECE1/8B5A2B?text=Круассан-кафе'">
+                        <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[#2C221E] text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow">
+                            ${dish.categoryName}
+                        </span>
+                        <span class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded-lg">
+                            ${dish.weight}
+                        </span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow justify-between">
+                        <div>
+                            <h3 onclick="openDishModal(${dish.id})" class="font-serif text-lg font-bold text-[#2C221E] cursor-pointer hover:text-[#C59B27] transition line-clamp-1">${dish.name}</h3>
+                            <p class="text-xs text-gray-600 mt-1 line-clamp-2 leading-relaxed">${dish.description}</p>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-[#EBE3D5] flex items-center justify-between">
+                            <span class="font-serif text-xl font-bold text-[#2C221E]">${dish.price} ₽</span>
+                            <button onclick="addToCart(${dish.id})" class="bg-[#2C221E] text-white px-4 py-2.5 rounded-xl text-xs font-semibold shadow hover:bg-[#C59B27] transition flex items-center space-x-1.5 active:scale-95">
+                                <i class="fa-solid fa-plus text-[10px]"></i>
+                                <span>В заказ</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Dish Modal Details
+        function openDishModal(id) {
+            const dish = dishes.find(d => d.id === id);
+            if (!dish) return;
+
+            document.getElementById('modal-img').src = dish.image;
+            document.getElementById('modal-category').innerText = dish.categoryName;
+            document.getElementById('modal-title').innerText = dish.name;
+            document.getElementById('modal-desc').innerText = dish.description;
+            document.getElementById('modal-weight').innerText = dish.weight;
+            document.getElementById('modal-protein').innerText = dish.protein;
+            document.getElementById('modal-fat').innerText = dish.fat;
+            document.getElementById('modal-carbs').innerText = dish.carbs;
+            document.getElementById('modal-kcal').innerText = dish.kcal;
+            document.getElementById('modal-allergens').innerText = dish.allergens;
+            document.getElementById('modal-ingredients').innerText = dish.ingredients;
+            document.getElementById('modal-price').innerText = dish.price + ' ₽';
+            
+            document.getElementById('modal-add-btn').onclick = function() {
+                addToCart(dish.id);
+                closeDishModal();
+            };
+
+            document.getElementById('dish-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDishModal() {
+            document.getElementById('dish-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Cart Management
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            drawer.classList.toggle('hidden');
+            if (!drawer.classList.contains('hidden')) {
+                renderCartItems();
+            }
+        }
+
+        function addToCart(id) {
+            const dish = dishes.find(d => d.id === id);
+            if (!dish) return;
+
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ ...dish, quantity: 1 });
+            }
+
+            updateCartUI();
+            showToast(`«${dish.name}» добавлено в корзину`);
+        }
+
+        function updateQuantity(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (!item) return;
+            item.quantity += delta;
+            if (item.quantity <= 0) {
+                cart = cart.filter(i => i.id !== id);
+            }
+            updateCartUI();
+            renderCartItems();
+        }
+
+        function updateCartUI() {
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const badge = document.getElementById('cart-badge');
+            if (!badge) return;
+            badge.innerText = totalCount;
+            if (totalCount > 0) {
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cart-items');
+            const totalEl = document.getElementById('cart-total');
+            if (!container || !totalEl) return;
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-16 text-gray-400">
+                        <i class="fa-solid fa-basket-shopping text-4xl mb-3 text-[#C59B27]"></i>
+                        <p class="text-sm font-medium text-[#2C221E]">Ваша корзина пуста</p>
+                        <p class="text-xs text-gray-500 mt-1">Выберите блюда из меню и добавьте их к заказу</p>
+                    </div>
+                `;
+                totalEl.innerText = '0 ₽';
+                return;
+            }
+
+            let total = 0;
+            container.innerHTML = cart.map(item => {
+                total += item.price * item.quantity;
+                return `
+                    <div class="flex items-center justify-between py-4 first:pt-0 last:pb-0">
+                        <div class="flex-1 pr-4">
+                            <h4 class="font-serif text-sm font-bold text-[#2C221E]">${item.name}</h4>
+                            <span class="text-xs text-gray-500">${item.price} ₽ / шт</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="flex items-center border border-[#EBE3D5] rounded-xl bg-[#FAF6F0]">
+                                <button onclick="updateQuantity(${item.id}, -1)" class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-[#2C221E]"><i class="fa-solid fa-minus text-xs"></i></button>
+                                <span class="w-6 text-center text-xs font-bold text-[#2C221E]">${item.quantity}</span>
+                                <button onclick="updateQuantity(${item.id}, 1)" class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-[#2C221E]"><i class="fa-solid fa-plus text-xs"></i></button>
+                            </div>
+                            <span class="font-serif font-bold text-sm text-[#2C221E] w-16 text-right">${item.price * item.quantity} ₽</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            totalEl.innerText = total + ' ₽';
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                showToast('Ваша корзина пуста');
+                return;
+            }
+            showToast('Заказ успешно оформлен! Спасибо за выбор Kruassan Family.');
+            cart = [];
+            updateCartUI();
+            toggleCart();
+        }
+
+        // Toast Notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            if (!toast || !toastMsg) return;
+            toastMsg.innerText = message;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3000);
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            showToast('Сообщение успешно отправлено! Мы свяжемся с вами.');
+            e.target.reset();
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu) menu.classList.toggle('hidden');
+        }
+
+        // Initialize application on load
+        window.onload = function() {
+            renderCategories();
+            filterDishes();
+            updateCartUI();
+        };
+    </script>
+</body>
+</html>
